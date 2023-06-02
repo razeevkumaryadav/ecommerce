@@ -9,7 +9,9 @@
 		$price = $_POST['price'];
 		$description = $_POST['description'];
 		$filename = $_FILES['photo']['name'];
-
+		$expiry_date =$_POST['expiry_date'];
+        $production_date = $_POST['production_rate'];
+		$cost = $_POST['cost'];
 		$conn = $pdo->open();
 
 		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM products WHERE slug=:slug");

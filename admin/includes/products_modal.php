@@ -44,11 +44,38 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="price" class="col-sm-1 control-label">Price</label>
+                  <label for="name" class="col-sm-1 control-label">Expiray Date</label>
+
+                  <div class="col-sm-5">
+                    <input type="date" class="form-control" id="expiry_date" name="expiry_date" required>
+                  </div>
+
+                  <label for="category" class="col-sm-1 control-label">Production Date</label>
+
+                  <div class="col-sm-5">
+                    <input type="date" class="form-control" id="production_date" name="production_date" required>
+              
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="price" class="col-sm-1 control-label">Selling Price</label>
 
                   <div class="col-sm-5">
                     <input type="text" class="form-control" id="price" name="price" required>
                   </div>
+
+                  <label for="photo" class="col-sm-1 control-label">Cost Price</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" id="cost" name="cost" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <!-- <label for="price" class="col-sm-1 control-label">Price</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" id="price" name="price" required>
+                  </div> -->
 
                   <label for="photo" class="col-sm-1 control-label">Photo</label>
 
