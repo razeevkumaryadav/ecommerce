@@ -10,8 +10,9 @@
 		$description = $_POST['description'];
 		$filename = $_FILES['photo']['name'];
 		$expiry_date =$_POST['expiry_date'];
-        $production_date = $_POST['production_rate'];
+        $production_date = $_POST['production_date'];
 		$cost = $_POST['cost'];
+		$quantity =$_POST['quantity'];
 		$conn = $pdo->open();
 
 		$stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM products WHERE slug=:slug");
@@ -32,9 +33,9 @@
 			}
 
 			try{
-				$stmt = $conn->prepare("INSERT INTO products (category_id, name, description, slug, price, photo) VALUES (:category, :name, :description, :slug, :price, :photo)");
-				$stmt->execute(['category'=>$category, 'name'=>$name, 'description'=>$description, 'slug'=>$slug, 'price'=>$price, 'photo'=>$new_filename]);
-				$_SESSION['success'] = 'User added successfully';
+				$stmt = $conn->prepare("INSERT INTO products (category_id, name, description, slug, price, photo,expiry_date,production_date,cost,quantity) VALUES (:category, :name, :description, :slug, :price, :photo,:expiry_date,:production_date,:cost, :quantity)");
+				$stmt->execute(['category'=>$category, 'name'=>$name, 'description'=>$description, 'slug'=>$slug, 'price'=>$price, 'photo'=>$new_filename,'expiry_date'=>$expiry_date,'production_date'=>$production_date,'cost'=>$cost,'quantity'=>$cost]);
+				$_SESSION['success'] = 'Product added successfully';
 
 			}
 			catch(PDOException $e){

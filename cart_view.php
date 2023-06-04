@@ -7,21 +7,44 @@
 	 
 	  <div class="content-wrapper">
 	    <div class="container">
-
+		<?php
+        if(isset($_SESSION['error'])){
+          echo "
+            <div class='alert alert-danger alert-dismissible'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+              <h4><i class='icon fa fa-warning'></i> Error!</h4>
+              ".$_SESSION['error']."
+            </div>
+          ";
+          unset($_SESSION['error']);
+        }
+        if(isset($_SESSION['success'])){
+          echo "
+            <div class='alert alert-success alert-dismissible'>
+              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+              <h4><i class='icon fa fa-check'></i> Success!</h4>
+              ".$_SESSION['success']."
+            </div>
+          ";
+          unset($_SESSION['success']);
+        }
+      ?>
 	      <!-- Main content -->
+		  <div id="msg"><div>
 	      <section class="content">
 	        <div class="row">
 	        	<div class="col-sm-9">
 	        		<h1 class="page-header">YOUR CART</h1>
 	        		<div class="box box-solid">
 	        			<div class="box-body">
+						
 		        		<table class="table table-bordered">
 		        			<thead>
 		        				<th></th>
 		        				<th>Photo</th>
 		        				<th>Name</th>
 		        				<th>Price</th>
-		        				<th width="20%">Quantity</th>
+		        				<th width="20%">Quantity(kg)</th>
 		        				<th>Subtotal</th>
 		        			</thead>
 		        			<tbody id="tbody">
@@ -130,6 +153,50 @@ $(function(){
 	getTotal();
 
 });
+
+$(document).on('click','#apply',function(e)
+{
+	var sumqty = 0;
+    $(".qty").each(function(){
+        sumqty += +$(this).val();
+      
+    });
+    var coupon = $('#coupon').val();
+	$.ajax({
+			type: 'POST',
+			url: 'apply_coupon.php',
+			data: {
+				qty: sumqty,
+				coupon: coupon,
+			},
+			dataType: 'json',
+			success: function(response){
+				  console.log({response});
+				if(!response.error){
+					// getDetails();
+					// getCart();
+					// getTotal();
+					 var total = document.getElementById("total").innerHTML;
+					 console.log(total);
+				}
+				else{
+					// var el = $('<div>')
+                    //         el.addClass("alert alert-danger err-msg").text(response.error)
+                    //         _this.prepend(el)
+                    //         el.show('slow')
+					//location.reload();
+					//$('#msg').text(response.error);
+					var total = document.getElementById("total").innerText;
+					    total.replace('$','');
+					 console.log(total);
+				}
+			}
+		});
+	});
+
+	
+	
+
 
 function getDetails(){
 	$.ajax({

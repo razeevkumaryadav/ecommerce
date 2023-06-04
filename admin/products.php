@@ -205,12 +205,17 @@ function getRow(id){
     data: {id:id},
     dataType: 'json',
     success: function(response){
+      console.log({response});
       $('#desc').html(response.description);
       $('.name').html(response.prodname);
       $('.prodid').val(response.prodid);
       $('#edit_name').val(response.prodname);
       $('#catselected').val(response.category_id).html(response.catname);
       $('#edit_price').val(response.price);
+      $('#edit_expiry_date').val(response.expiry_date);
+      $('#edit_cost').val(response.cost);
+      $('#edit_production_date').val(response.production_date);
+      $('#edit_quantity').val(response.quantity);
       CKEDITOR.instances["editor2"].setData(response.description);
       getCategory();
     }

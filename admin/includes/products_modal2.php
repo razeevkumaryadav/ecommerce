@@ -52,10 +52,37 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="edit_price" class="col-sm-1 control-label">Price</label>
+                  <label for="name" class="col-sm-1 control-label">Expiray Date</label>
+
+                  <div class="col-sm-5">
+                    <input type="date" class="form-control" id="edit_expiry_date" name="expiry_date" required>
+                  </div>
+
+                  <label for="category" class="col-sm-1 control-label">Production Date</label>
+
+                  <div class="col-sm-5">
+                    <input type="date" class="form-control" id="edit_production_date" name="production_date" required>
+              
+                  </div>
+                </div>
+              
+                <div class="form-group">
+                  <label for="edit_price" class="col-sm-1 control-label">Selling Price</label>
 
                   <div class="col-sm-5">
                     <input type="text" class="form-control" id="edit_price" name="price">
+                  </div>
+                  <label for="photo" class="col-sm-1 control-label">Cost Price</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" id="edit_cost" name="cost" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="price" class="col-sm-1 control-label">Quantity(kg)</label>
+
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" id="edit_quantity" name="quantity" required placeholder="in kg">
                   </div>
                 </div>
                 <p><b>Description</b></p>

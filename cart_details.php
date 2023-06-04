@@ -83,22 +83,27 @@
 							<span class='input-group-btn'>
             					<button type='button' id='minus' class='btn btn-default btn-flat minus' data-id='".$row['productid']."'><i class='fa fa-minus'></i></button>
             				</span>
-            				<input type='text' class='form-control' value='".$row['quantity']."' id='qty_".$row['productid']."'>
+            				<input type='text' class='form-control qty' name='qty' value='".$row['quantity']."' id='qty_".$row['productid']."'>
 				            <span class='input-group-btn'>
 				                <button type='button' id='add' class='btn btn-default btn-flat add' data-id='".$row['productid']."'><i class='fa fa-plus'></i>
 				                </button>
 				            </span>
 						</td>
+						
 						<td>&#36; ".number_format($subtotal, 2)."</td>
 					</tr>
 				";
 				
 			}
-
+            $output .="<tr>
+						<td colspan='5' align='right'><input type='text' name='coupon' id='coupon' class='form-control' placeholder='coupon code '/></td>
+						<td><button class='btn btn-primary' id='apply'>Apply coupon</button></td>
+					</tr>";
 			$output .= "
 				<tr>
 					<td colspan='5' align='right'><b>Total</b></td>
-					<td><b>&#36; ".number_format($total, 2)."</b></td>
+					<td id='total'><b>&#36; ".number_format($total, 2)."</b></td>
+					
 				<tr>
 			";
 		}

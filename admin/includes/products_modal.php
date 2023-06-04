@@ -71,11 +71,11 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <!-- <label for="price" class="col-sm-1 control-label">Price</label>
+                  <label for="price" class="col-sm-1 control-label">Quantity</label>
 
                   <div class="col-sm-5">
-                    <input type="text" class="form-control" id="price" name="price" required>
-                  </div> -->
+                    <input type="text" class="form-control" id="quantity" name="quantity" required placeholder="in kg">
+                  </div>
 
                   <label for="photo" class="col-sm-1 control-label">Photo</label>
 
