@@ -24,11 +24,11 @@
 
 		try{
 			$total = 0;
-			$stmt = $conn->prepare("SELECT *, cart.id AS cartid FROM cart LEFT JOIN products ON products.id=cart.product_id WHERE user_id=:user");
+			$stmt = $conn->prepare("SELECT *, cart.id AS cartid,cart.quantity as cartquantity FROM cart LEFT JOIN products ON products.id=cart.product_id WHERE user_id=:user");
 			$stmt->execute(['user'=>$user['id']]);
 			foreach($stmt as $row){
 				$image = (!empty($row['photo'])) ? 'images/'.$row['photo'] : 'images/noimage.jpg';
-				$subtotal = $row['price']*$row['quantity'];
+				$subtotal = $row['price']*$row['cartquantity'];
 				$total += $subtotal;
 				$output .= "
 					<tr>
@@ -40,7 +40,7 @@
 							<span class='input-group-btn'>
             					<button type='button' id='minus' class='btn btn-default btn-flat minus' data-id='".$row['cartid']."'><i class='fa fa-minus'></i></button>
             				</span>
-            				<input type='text' class='form-control' value='".$row['quantity']."' id='qty_".$row['cartid']."'>
+            				<input type='text' class='form-control qty' value='".$row['cartquantity']."' id='qty_".$row['cartid']."'>
 				            <span class='input-group-btn'>
 				                <button type='button' id='add' class='btn btn-default btn-flat add' data-id='".$row['cartid']."'><i class='fa fa-plus'></i>
 				                </button>
@@ -50,10 +50,15 @@
 					</tr>
 				";
 			}
+			$output .="<tr>
+						<td colspan='5' align='right'><input type='text' name='coupon' id='coupon' class='form-control' placeholder='coupon code '/></td>
+						<td><button class='btn btn-primary' id='apply'>Apply coupon</button></td>
+					</tr>";
 			$output .= "
 				<tr>
 					<td colspan='5' align='right'><b>Total</b></td>
-					<td><b>&#36; ".number_format($total, 2)."</b></td>
+					<!--<td><b>&#36; ".number_format($total, 2)."</b></td>-->
+					<td><b>&#36;<input type='text' name='totals' id='totals' value='$total' disabled/></b></td>
 				<tr>
 			";
 
@@ -102,8 +107,8 @@
 			$output .= "
 				<tr>
 					<td colspan='5' align='right'><b>Total</b></td>
-					<td id='total'><b>&#36; ".number_format($total, 2)."</b></td>
-					
+					<!--<td id='total'><b>&#36; ".number_format($total, 2)."</b></td>-->
+					<td><b>&#36;<input type='text' name='totals' id='totals' value='$total' disabled/></b></td>
 				<tr>
 			";
 		}

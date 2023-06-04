@@ -22,11 +22,11 @@
 		else{
 			try{
 				//$stmt = $conn->prepare("INSERT INTO cart (user_id, product_id, quantity) VALUES (:user, :product, :quantity)");
-                $stmt = $conn->prepare("SELECT discount  FROM discountrate WHERE code=:code and minvol >=:qty and maxvol =<:qty");
+                $stmt = $conn->prepare("SELECT discount  FROM discountrate WHERE code=:code and maxvol >=:qty and minvol <=:qty");
 				$stmt->execute(['code'=>$code,'qty'=>$quantity]);
                 $row = $stmt->fetch();
-				$_SESSION['success'] = 'Product added to cart';
-				$resp['success']='Product added to cart';
+				$_SESSION['success'] = 'Coupon Applied to cart';
+				$resp['success']='Coupon Applied to cart';
 			}
 			catch(PDOException $e){
 				$_SESSION['error'] = $e->getMessage();
@@ -34,11 +34,17 @@
 			}
 		}
         $count = $stmt->rowCount();
-       // echo $count;
-		//echo $row['discount'];
-        if($count >0 && ($row['discount'] !=  null))
+        //$resp['raw']= $row;
+		// foreach($stmt as $rows)
+		// {
+		// 	$discount = $rows['discount'];
+		// 	$resp['raw']= $rows['discount'];
+		// }
+		 
+        if($count > 0 && ($row['discount'] !=  null))
         {
             $discount = $row['discount'];
+
         }
 		$resp['discount']=$discount;
 		$pdo->close();

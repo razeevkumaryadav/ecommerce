@@ -54,9 +54,11 @@
 	        		</div>
 	        		<?php
 	        			if(isset($_SESSION['user'])){
-	        				echo "
-	        					<div id='paypal-button'></div>
-	        				";
+	        				// echo "
+	        				// 	<div id='paypal-button'></div>
+	        				// ";
+
+							echo '<a href="#addnew" data-toggle="modal" class="btn btn-success btn-sm btn-flat"><i class="fa fa-plus"></i> Check Out</a>';
 	        			}
 	        			else{
 	        				echo "
@@ -171,24 +173,41 @@ $(document).on('click','#apply',function(e)
 			},
 			dataType: 'json',
 			success: function(response){
-				  console.log({response});
-				if(!response.error){
+				 // console.log({response});
+				if(response.success){
+					$("#apply").attr( "disabled", "disabled" );
 					// getDetails();
 					// getCart();
 					// getTotal();
-					 var total = document.getElementById("total").innerHTML;
-					 console.log(total);
+					// var total = document.getElementById("total").innerHTML;
+					 var totals = $("#totals").val();
+					 totals = parseFloat(totals);
+					 var dis = parseFloat(response.discount);
+					 console.log('dis',dis);
+					 if(dis > 0)
+					 {
+						//var dis = parseFloat(response.discount)
+						total = ( totals - parseFloat((dis/100)*totals)).toFixed(2)
+					 }
+					 console.log('final tota',total);
+					 $("#totals").val(total);
 				}
 				else{
 					// var el = $('<div>')
                     //         el.addClass("alert alert-danger err-msg").text(response.error)
                     //         _this.prepend(el)
                     //         el.show('slow')
-					//location.reload();
+					location.reload();
+					// var error = document.getElementById("msg")
+					// error.textContent = response.error
+            		// error.style.color = "red"
 					//$('#msg').text(response.error);
-					var total = document.getElementById("total").innerText;
-					    total.replace('$','');
-					 console.log(total);
+					// getDetails();
+					// getCart();
+					// getTotal();
+					//var total = $("#totals").val();
+					    //total=total.toString();
+					 //console.log(total);
 				}
 			}
 		});
