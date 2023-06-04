@@ -58,7 +58,7 @@
 	        				// 	<div id='paypal-button'></div>
 	        				// ";
 
-							echo '<a href="#addnew" data-toggle="modal" class="btn btn-success btn-sm btn-flat"><i class="fa fa-plus"></i> Check Out</a>';
+							echo '<a href="#addnew" data-toggle="modal" class="btn btn-success btn-sm btn-flat" id="checkout"><i class="fa fa-plus"></i> Check Out</a>';
 	        			}
 	        			else{
 	        				echo "
@@ -72,6 +72,7 @@
 	        	</div>
 	        </div>
 	      </section>
+		  <?php include 'cart_modal.php'; ?>
 	     
 	    </div>
 	  </div>
@@ -190,7 +191,8 @@ $(document).on('click','#apply',function(e)
 						total = ( totals - parseFloat((dis/100)*totals)).toFixed(2)
 					 }
 					 console.log('final tota',total);
-					 $("#totals").val(total);
+					 if(total >0 )
+					{$("#totals").val(total);}
 				}
 				else{
 					// var el = $('<div>')
@@ -213,6 +215,26 @@ $(document).on('click','#apply',function(e)
 		});
 	});
 
+	$(document).on('click','#checkout',function(e)
+	{
+		var totals = $('#totals').val();
+		$('#totalpayable').val(totals);
+	});
+
+	// $(document).on('change','#payAmount',function(e)
+	// {
+	// 	var totals = $('#totals').val();
+	// 	var payAmount = $('#payAmount').val();
+    //     var due = (parseFloat(totals) - parseFloat(payAmount)).toFixed(2);
+	// 	$('#dueAmount').val(due);
+	// });
+
+	$('#payAmount').change(function(){
+		var totals = $('#totals').val();
+		var payAmount = $('#payAmount').val();
+        var due = (parseFloat(totals) - parseFloat(payAmount)).toFixed(2);
+		$('#dueAmount').val(due);
+	});
 	
 	
 
