@@ -33,7 +33,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-              <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Pay Amount</button>
+              <button type="submit" class="btn btn-primary btn-flat" id='pay'><i class="fa fa-save"></i> Pay Amount</button>
               </form>
             </div>
         </div>

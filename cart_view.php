@@ -290,16 +290,23 @@ $(document).on('click','#apply',function(e)
 	
 
 	$('#payAmount').change(function(){
-		var totals = $('#totals').val();
-		  var qty = $('.qty').val();
-		  var payAmount = $('#payAmount').val();
-		  if(qty >1000 && (totals/2)>=payAmount)
+		var totals =  parseFloat($('#totals').val());
+		  var qty = parseFloat($('.qty').val());
+		  var payAmount =  parseFloat($('#payAmount').val());
+		  if(qty >1000 && (totals/2) >= payAmount)
 		  {
 			alert('your pay amount should be at least 50%');
+			$("#pay").attr( "disabled", "disabled" );
+
+		  }
+		  else
+		  {
+			$("#pay").removeAttr( "disabled", "disabled" );
+
 		  }
 		    
-		var payAmount = $('#payAmount').val();
-        var due = (parseFloat(totals) - parseFloat(payAmount)).toFixed(2);
+		//var payAmount = $('#payAmount').val();
+        var due = (totals - payAmount).toFixed(2);
 		$('#dueAmount').val(due);
 	});
 	
