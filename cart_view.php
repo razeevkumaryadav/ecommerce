@@ -156,7 +156,58 @@ $(function(){
 	getTotal();
 
 });
+// $(document).on('click','#pay', function(e)
+// {
+// 	e.preventDefault();
+// 	var total = $('#totalpayable').val();
+// 	var paid = $('#payAmount').val();
+// 	var due = $('#dueAmount').val();
 
+// 	$.ajax({
+// 			type: 'POST',
+// 			url: 'sales.php',
+// 			data: {
+// 				// qty: sumqty,
+// 				// coupon: coupon,
+// 				total :total,
+// 				paid:paid,
+// 				due:due
+// 			},
+// 			dataType: 'json',
+// 			success: function(response){
+// 				 // console.log({response});
+// 				if(response.success){
+// 					//$("#apply").attr( "disabled", "disabled" );
+// 					// getDetails();
+// 					// getCart();
+// 					// getTotal();
+// 					// var total = document.getElementById("total").innerHTML;
+// 					//  var totals = $("#totals").val();
+// 					//  totals = parseFloat(totals);
+// 					//  var dis = parseFloat(response.discount);
+// 					//  console.log('dis',dis);
+// 					//  if(dis > 0)
+// 					//  {
+// 					// 	//var dis = parseFloat(response.discount)
+// 					// 	total = ( totals - parseFloat((dis/100)*totals)).toFixed(2)
+// 					//  }
+// 					//  console.log('final tota',total);
+// 					//  if(total >0 )
+// 					// {$("#totals").val(total);}
+// 				}
+// 				else{
+// 					// var el = $('<div>')
+//                     //         el.addClass("alert alert-danger err-msg").text(response.error)
+//                     //         _this.prepend(el)
+//                     //         el.show('slow')
+// 					location.reload();
+				
+// 				}
+// 			}
+// 		});
+
+// }
+// )
 $(document).on('click','#apply',function(e)
 {
 	var sumqty = 0;

@@ -8,7 +8,7 @@
               <h4 class="modal-title"><b>Make Payment</b></h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="category_add.php">
+              <form class="form-horizontal" method="POST" action="sales.php">
                 <div class="form-group">
                     <label for="name" class="col-sm-3 control-label">Total Payable amount</label>
 
@@ -33,7 +33,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-              <button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Pay Amount</button>
+              <button type="submit" class="btn btn-primary btn-flat" name="add" id='pay'><i class="fa fa-save"></i> Pay Amount</button>
               </form>
             </div>
         </div>
