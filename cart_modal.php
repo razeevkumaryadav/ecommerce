@@ -13,7 +13,7 @@
                     <label for="name" class="col-sm-3 control-label">Total Payable amount</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="totalpayable" name="totalpayable" required disabled>
+                      <input type="text" class="form-control" id="totalpayable" name="totalpayable" required >
                     </div>
                 </div>
                 <div class="form-group">
@@ -27,13 +27,13 @@
                     <label for="name" class="col-sm-3 control-label">Due Amount</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="dueAmount" name="dueAmount" required disabled>
+                      <input type="text" class="form-control" id="dueAmount" name="dueAmount" required >
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-              <button type="submit" class="btn btn-primary btn-flat" name="add" id='pay'><i class="fa fa-save"></i> Pay Amount</button>
+              <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Pay Amount</button>
               </form>
             </div>
         </div>

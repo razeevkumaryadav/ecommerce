@@ -55,11 +55,11 @@
                       $stmt = $conn->prepare("SELECT *, sales.id AS salesid FROM sales LEFT JOIN users ON users.id=sales.user_id ORDER BY sales_date DESC");
                       $stmt->execute();
                       foreach($stmt as $row){
-                        $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id WHERE details.sales_id=:id");
+                        $stmt = $conn->prepare("SELECT *,details.quantity as qty  FROM details LEFT JOIN products ON products.id=details.product_id WHERE details.sales_id=:id");
                         $stmt->execute(['id'=>$row['salesid']]);
                         $total = 0;
                         foreach($stmt as $details){
-                          $subtotal = $details['price']*$details['quantity'];
+                          $subtotal = $details['price']*$details['qty'];
                           $total += $subtotal;
                         }
                         echo "
@@ -155,6 +155,9 @@ $(function(){
         $('#transid').html(response.transaction);
         $('#detail').prepend(response.list);
         $('#total').html(response.total);
+        $('#paid').html(response.paid);
+				$('#due').html(response.due);
+				$('#discount').html(response.discount);
       }
     });
   });

@@ -156,6 +156,35 @@ $(function(){
 	getTotal();
 
 });
+// $(document).ready(function () {
+//   $("form").submit(function (event) {
+// 	var total = $('#totalpayable').val();
+// 	var paid = $('#payAmount').val();
+// 	var due = $('#dueAmount').val();
+
+// 	$.ajax({
+// 			type: 'POST',
+// 			url: 'sales.php',
+// 			data: {
+				
+// 				total :total,
+// 				paid:paid,
+// 				due:due
+// 			},
+// 			dataType: 'json',
+// 			success: function(response){
+// 				console.log('response',response)
+// 			},
+// 			error:function(xhr, status, error)
+// 			{
+// 				//var err = JSON.parse(error.responseText);
+// 				console.log("error",error,status,xhr)
+// 			}
+
+
+//   })
+// });
+// })
 // $(document).on('click','#pay', function(e)
 // {
 // 	e.preventDefault();
@@ -314,7 +343,7 @@ function getTotal(){
 }
 </script>
 <!-- Paypal Express -->
-<script>
+<!-- <script>
 paypal.Button.render({
     env: 'sandbox', // change for production if app is live,
 
@@ -353,6 +382,6 @@ paypal.Button.render({
     },
 
 }, '#paypal-button');
-</script>
+</script> -->
 </body>
 </html>

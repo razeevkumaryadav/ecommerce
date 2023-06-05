@@ -24,6 +24,18 @@
                     <td colspan="3" align="right"><b>Total</b></td>
                     <td><span id="total"></span></td>
                   </tr>
+                  <tr>
+                    <td colspan="3" align="right"><b>Discount</b></td>
+                    <td><span id="discount"></span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" align="right"><b>Paid</b></td>
+                    <td><span id="paid"></span></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" align="right"><b>Due</b></td>
+                    <td><span id="due"></span></td>
+                  </tr>
                 </tbody>
               </table>
             </div>

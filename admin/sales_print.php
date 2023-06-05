@@ -8,11 +8,11 @@
 		$stmt->execute();
 		$total = 0;
 		foreach($stmt as $row){
-			$stmt = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id WHERE sales_id=:id");
+			$stmt = $conn->prepare("SELECT *,details.quantity as qty FROM details LEFT JOIN products ON products.id=details.product_id WHERE sales_id=:id");
 			$stmt->execute(['id'=>$row['salesid']]);
 			$amount = 0;
 			foreach($stmt as $details){
-				$subtotal = $details['price']*$details['quantity'];
+				$subtotal = $details['price']*$details['qty'];
 				$amount += $subtotal;
 			}
 			$total += $amount;

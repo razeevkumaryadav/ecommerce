@@ -62,12 +62,12 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <?php
-                $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN products ON products.id=details.product_id");
+                $stmt = $conn->prepare("SELECT *,details.quantity as qty FROM details LEFT JOIN products ON products.id=details.product_id");
                 $stmt->execute();
 
                 $total = 0;
                 foreach($stmt as $srow){
-                  $subtotal = $srow['price']*$srow['quantity'];
+                  $subtotal = $srow['price']*$srow['qty'];
                   $total += $subtotal;
                 }
 
@@ -129,12 +129,12 @@
           <div class="small-box bg-red">
             <div class="inner">
               <?php
-                $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE sales_date=:sales_date");
+                $stmt = $conn->prepare("SELECT *,details.quantity as qty FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE sales_date=:sales_date");
                 $stmt->execute(['sales_date'=>$today]);
 
                 $total = 0;
                 foreach($stmt as $trow){
-                  $subtotal = $trow['price']*$trow['quantity'];
+                  $subtotal = $trow['price']*$trow['qty'];
                   $total += $subtotal;
                 }
 
@@ -201,11 +201,11 @@
   $sales = array();
   for( $m = 1; $m <= 12; $m++ ) {
     try{
-      $stmt = $conn->prepare("SELECT * FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE MONTH(sales_date)=:month AND YEAR(sales_date)=:year");
+      $stmt = $conn->prepare("SELECT *,details.quantity as qty FROM details LEFT JOIN sales ON sales.id=details.sales_id LEFT JOIN products ON products.id=details.product_id WHERE MONTH(sales_date)=:month AND YEAR(sales_date)=:year");
       $stmt->execute(['month'=>$m, 'year'=>$year]);
       $total = 0;
       foreach($stmt as $srow){
-        $subtotal = $srow['price']*$srow['quantity'];
+        $subtotal = $srow['price']*$srow['qty'];
         $total += $subtotal;    
       }
       array_push($sales, round($total, 2));
