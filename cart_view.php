@@ -44,6 +44,7 @@
 		        				<th>Photo</th>
 		        				<th>Name</th>
 		        				<th>Price</th>
+								<th>Available(in kg)</th>
 		        				<th width="20%">Quantity(kg)</th>
 		        				<th>Subtotal</th>
 		        			</thead>
@@ -254,13 +255,10 @@ $(document).on('click','#apply',function(e)
 			},
 			dataType: 'json',
 			success: function(response){
-				 // console.log({response});
+				
 				if(response.success){
 					$("#apply").attr( "disabled", "disabled" );
-					// getDetails();
-					// getCart();
-					// getTotal();
-					// var total = document.getElementById("total").innerHTML;
+				
 					 var totals = $("#totals").val();
 					 totals = parseFloat(totals);
 					 var dis = parseFloat(response.discount);
@@ -275,21 +273,9 @@ $(document).on('click','#apply',function(e)
 					{$("#totals").val(total);}
 				}
 				else{
-					// var el = $('<div>')
-                    //         el.addClass("alert alert-danger err-msg").text(response.error)
-                    //         _this.prepend(el)
-                    //         el.show('slow')
+				
 					location.reload();
-					// var error = document.getElementById("msg")
-					// error.textContent = response.error
-            		// error.style.color = "red"
-					//$('#msg').text(response.error);
-					// getDetails();
-					// getCart();
-					// getTotal();
-					//var total = $("#totals").val();
-					    //total=total.toString();
-					 //console.log(total);
+					
 				}
 			}
 		});
@@ -301,16 +287,17 @@ $(document).on('click','#apply',function(e)
 		$('#totalpayable').val(totals);
 	});
 
-	// $(document).on('change','#payAmount',function(e)
-	// {
-	// 	var totals = $('#totals').val();
-	// 	var payAmount = $('#payAmount').val();
-    //     var due = (parseFloat(totals) - parseFloat(payAmount)).toFixed(2);
-	// 	$('#dueAmount').val(due);
-	// });
+	
 
 	$('#payAmount').change(function(){
 		var totals = $('#totals').val();
+		  var qty = $('.qty').val();
+		  var payAmount = $('#payAmount').val();
+		  if(qty >1000 && (totals/2)>=payAmount)
+		  {
+			alert('your pay amount should be at least 50%');
+		  }
+		    
 		var payAmount = $('#payAmount').val();
         var due = (parseFloat(totals) - parseFloat(payAmount)).toFixed(2);
 		$('#dueAmount').val(due);

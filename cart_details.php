@@ -36,6 +36,7 @@
 						<td><img src='".$image."' width='30px' height='30px'></td>
 						<td>".$row['name']."</td>
 						<td>&#36; ".number_format($row['price'], 2)."</td>
+						<td>".$row['quantity']."</td>
 						<td class='input-group'>
 							<span class='input-group-btn'>
             					<button type='button' id='minus' class='btn btn-default btn-flat minus' data-id='".$row['cartid']."'><i class='fa fa-minus'></i></button>
