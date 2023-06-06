@@ -295,7 +295,7 @@ $(document).on('click','#apply',function(e)
 		  var payAmount =  parseFloat($('#payAmount').val());
 		  if(qty >1000 && (totals/2) >= payAmount)
 		  {
-			alert('your pay amount should be at least 50%');
+			alert('your pay amount should be at least 50 of your total payable amount');
 			$("#pay").attr( "disabled", "disabled" );
 
 		  }
